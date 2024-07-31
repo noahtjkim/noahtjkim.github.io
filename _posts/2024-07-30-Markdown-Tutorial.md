@@ -27,3 +27,9 @@ then this is the new line
 `*italic*`
 *my italic text*
 
+---
+To make paragraphs, use one or more lines.  
+
+Paragraph1, hello world, ...
+
+Paragraph2, Markdown tutorial ...
