@@ -1,3 +1,8 @@
+---
+layout: post
+title: Markdown language tutorial
+---
+
 This page brefily explains about Markdown language.  
 It will handle such as  
 making titles, write plain text, code, tables, etc
