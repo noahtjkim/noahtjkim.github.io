@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Hi! I'm Noah. I'm a senior data engineer. 
+I'm interested in many things which give me fun.
+I'd like to communicate with people via many interesting topics. 
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[noah24.kim@gmail.com](mailto:noah24.kim@gmail.com)
