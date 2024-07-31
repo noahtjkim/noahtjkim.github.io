@@ -26,19 +26,3 @@ then this is the new line
 `*italic*`
 *my italic text*
 
-
----
-To make a table in markdown page, you should write like below  
-'|' separates fields, '---' separates columns and values
-```
-|column1|column2|
-|-------|-------|
-|value  |value  |
-|value  |value  |
-|value  |value  |
-```
-|column1|column2|
-|-------|-------|
-|value  |value  |
-|value  |value  |
-|value  |value  |
