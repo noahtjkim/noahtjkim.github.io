@@ -23,6 +23,7 @@ then this is the new line
 ---
 `**bold**`
 **my bold text**  
+
 `*italic*`
 *my italic text*
 
