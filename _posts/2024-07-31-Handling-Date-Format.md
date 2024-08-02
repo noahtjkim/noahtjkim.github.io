@@ -53,7 +53,7 @@ I'd like to introduce one of the ways.
      ```
      update dataset_table
      set new_date = to_timestamp(date, 'MM-dd-yyyy hh:mm:ss a')
-     where date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}'
+     where date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s[APap]\\.[Mm]\\.'
      ```
      and repeat this for other date foramts
      (rlike is "regular expression like" so you can use regular expression to catch the date format patterns)
