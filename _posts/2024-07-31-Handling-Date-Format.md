@@ -33,6 +33,7 @@ I'd like to introduce one of the ways.
          when date rlike '\\d{2}\\/\\d{2}\\/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}' then 'MM/dd/yyyy HH:mm:ss'
          when date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}' then 'MM-dd-yyyy HH:mm:ss'
          when date rlike '\\d{1,2}-\\d{2}-\\d{4}' then 'M-dd-yyyy'
+         -- other formats here ...
          else 'Unknown formats'
       end
    from dataset_table
