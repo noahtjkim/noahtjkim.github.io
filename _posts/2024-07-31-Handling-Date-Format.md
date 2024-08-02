@@ -38,8 +38,19 @@ I'd like to introduce one of the ways.
    from dataset_table
    ```
 
-3. Once you get all the date formats, then you could take either one of these ways.
+3. Once you get all the date formats, then you can take this way to update your table.  
    - Add a new column and use update statement
-   - create multiple tables and update all the tables and use union  
+     With this way, it will be like  
+     ```
+     alter table dataset_table
+     add column new_date timestamp
+     ```
+     ```
+     update dataset_table
+     set new_date = to_timestamp(date, 'MM/dd/yyyy HH:mm:ss')
+     where date rlike '\\d{2}\\/\\d{2}\\/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}'
+     ```
+     and repeat this for other date foramts
+     
 
 
