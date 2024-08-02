@@ -46,11 +46,13 @@ I'd like to introduce one of the ways.
      add column new_date timestamp
      ```
      ```
+     -- 05/21/2024 18:30:15
      update dataset_table
      set new_date = to_timestamp(date, 'MM/dd/yyyy HH:mm:ss')
      where date rlike '\\d{2}\\/\\d{2}\\/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}'
      ```
      ```
+     -- 04-15-2024 09:21:11 P.M.
      update dataset_table
      set new_date = to_timestamp(date, 'MM-dd-yyyy hh:mm:ss a')
      where date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s[APap]\\.[Mm]\\.'
