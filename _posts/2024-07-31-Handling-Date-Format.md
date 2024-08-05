@@ -21,6 +21,11 @@ HH: 05 or 23
 h: 7 or 11 used with am, pm  
 hh: 07 or 11 used with am, pm  
 
+(Note that M for non-padded month, MM for padded month, MMM for abbreviated name month, MMMM for full name month)  
+M: 1 (January), 11 (November)  
+MM: 01 (January), 11 (November)  
+MMM: Jan (January), Nov (November)  
+MMMM: November (November)  
 
 Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
 
@@ -63,7 +68,6 @@ WHERE date RLIKE '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s[APap]\\.[Mm]\\.
 ```
 ```
 -- Example for MMM dd yyyy HH:mm:ss
--- MMMM is full month name, MMM is abbreviated month name
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MMM dd yyyy HH:mm:ss')
 WHERE date RLIKE '^[A-Za-z]{3}\\s\\d{2}\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}$'
