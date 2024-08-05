@@ -47,10 +47,11 @@ Use # symbols to create headers of different levels.
 #### Bold and Italic Text  
 Bold: Use double asterisks ** or double underscores __ for bold text.  
 
-**bold** my bold text  
+`**bold**` **my bold text**  
+
 Italic: Use single asterisk * or single underscore _ for italic text.  
 
-*italic* my italic text  
+`*italic*` *my italic text*  
 
 ---
 
