@@ -10,9 +10,8 @@ This page briefly explains the Markdown language. It will cover topics such as m
 #### Markdown Basics  
 Horizontal Lines  
 Use three dashes to create a horizontal line, like the one above.  
-```
----
-```
+`---`
+
 
 ---
 
