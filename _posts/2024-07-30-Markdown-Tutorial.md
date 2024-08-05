@@ -17,6 +17,8 @@ To create a new line in plain text, add more than two whitespaces at the end of 
 I put two whitespaces here  
 then this is the new line.  
 
+---
+
 #### Headers  
 Use # symbols to create headers of different levels.  
 ```
