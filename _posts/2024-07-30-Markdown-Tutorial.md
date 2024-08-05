@@ -5,6 +5,8 @@ title: Markdown language tutorial
 
 This page briefly explains the Markdown language. It will cover topics such as making titles, writing plain text, adding code, creating tables, and more.  
 
+---
+
 #### Markdown Basics  
 Horizontal Lines  
 Use three dashes to create a horizontal line, like the one above.  
