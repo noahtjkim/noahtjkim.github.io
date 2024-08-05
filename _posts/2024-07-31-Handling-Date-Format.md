@@ -35,10 +35,10 @@ FROM dataset_table;
 
 3. Update the Table with Standardized Timestamps
 Once you have identified all the date formats, you can update your table to convert these string dates into a standardized timestamp format. Here’s how:  
-
+```
 ALTER TABLE dataset_table
 ADD COLUMN new_date TIMESTAMP;  
-
+```
 ```
 -- Example for MM/dd/yyyy HH:mm:ss
 UPDATE dataset_table
