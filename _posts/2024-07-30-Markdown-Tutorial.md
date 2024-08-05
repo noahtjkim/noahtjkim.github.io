@@ -26,21 +26,14 @@ then this is the new line.
 #### Headers  
 Use # symbols to create headers of different levels.  
 # Header 1
-```
-# Header 1
-```
+`# Header 1`
 
 
 ## Header 2
-```
-## Header 2
-```
-
+`## Header 2`
 
 ### Header 3  
-```
-### Header 3
-```
+`### Header 3`
 
 ---
 
