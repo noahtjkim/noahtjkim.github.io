@@ -53,7 +53,7 @@ WHERE date RLIKE '\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2} [APap]\\.[Mm]\\.';
 ```
 Repeat the above UPDATE statement for each identified date format.  
 Note that RLIKE stands for "regular expression like", allowing you to match patterns using regular expressions.  
-Since SQL often treats \ as a special character, use \\ to represent a literal backslash.  
+Since SQL often treats `\` as a special character, use `\\` to represent a literal backslash.  
 
 ##### Conclusion
 Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardized timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
