@@ -18,8 +18,8 @@ Apr 05 2024 00:15:30 (MMM dd yyyy HH:mm:ss)
 (Note that **H** for 24 hour, non-padded, **HH** for 24 hour, padded, **h** for 12 hour, non-padded, **hh** for 12 hour, padded)  
 **H**: 5 or 23  
 **HH**: 05 or 23  
-**h**: 7 or 11 used with am, pm  
-**hh**: 07 or 11 used with am, pm  
+**h**: 7 or 11 **used with am, pm**  
+**hh**: 07 or 11 **used with am, pm**  
 
 (Note that **M** for non-padded month, **MM** for padded month, **MMM** for abbreviated name month, **MMMM** for full name month)  
 **M**: 1 (January), 11 (November)  
