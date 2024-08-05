@@ -3,41 +3,48 @@ layout: post
 title: Markdown language tutorial
 ---
 
-This page brefily explains about Markdown language.  
-It will handle such as  
-making titles, write plain text, code, tables, etc
+This page briefly explains the Markdown language. It will cover topics such as making titles, writing plain text, adding code, creating tables, and more.  
 
+#### Markdown Basics  
+Horizontal Lines  
+Use three dashes to create a horizontal line, like the one above.  
+```
 ---
-`---` makes a horizontal line just like above line
+```
 
----
-When you write a plain text and you want to make a new line, then you should put more than 2 whitespaces at the end of the line.  
-I put 2 whitespace here  
-then this is the new line
+#### Line Breaks  
+To create a new line in plain text, add more than two whitespaces at the end of the line.  
+I put two whitespaces here  
+then this is the new line.  
 
----
-`# header 1`  
-# header 1  
+#### Headers  
+Use # symbols to create headers of different levels.  
+```
+# Header 1
+```
+# Header 1
 
-`## header 2`  
-## header 2  
+```
+## Header 2
+```
+## Header 2
+```
+### Header 3
+```
+### Header 3  
 
-`### header 3`  
-### header 3  
+#### Bold and Italic Text  
+Bold: Use double asterisks ** or double underscores __ for bold text.  
 
----
-`**bold**`
-**my bold text**  
+**bold** my bold text  
+Italic: Use single asterisk * or single underscore _ for italic text.  
 
-`*italic*`
-*my italic text*
+*italic* my italic text  
+Paragraphs  
+To create paragraphs, use one or more blank lines to separate blocks of text.  
 
----
-To make paragraphs, use one or more lines.  
+Paragraph 1,  
+hello world, ...  
 
-Paragraph1,  
-hello world, ...
-
-Paragraph2,  
-Markdown tutorial ...
-
+Paragraph 2,  
+Markdown tutorial ...  
