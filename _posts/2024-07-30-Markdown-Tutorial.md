@@ -47,7 +47,10 @@ Bold: Use double asterisks ** or double underscores __ for bold text.
 Italic: Use single asterisk * or single underscore _ for italic text.  
 
 *italic* my italic text  
-Paragraphs  
+
+---
+
+#### Paragraphs  
 To create paragraphs, use one or more blank lines to separate blocks of text.  
 
 Paragraph 1,  
