@@ -11,6 +11,7 @@ When working with datasets from multiple sources, it's common to encounter varyi
 4-21-2024 (M-dd-yyyy)  
 04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm a)  
 02/05/24 (MM/dd/yy)  
+
 Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
 
 There are several ways to handle this situation, and I’d like to introduce one effective method:
