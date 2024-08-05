@@ -63,6 +63,7 @@ WHERE date RLIKE '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s[APap]\\.[Mm]\\.
 ```
 ```
 -- Example for MMM dd yyyy HH:mm:ss
+-- MMMM is full month name, MMM abbreviated month name
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MMM dd yyyy HH:mm:ss')
 WHERE date RLIKE '^[A-Za-z]{3}\\s\\d{2}\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}$'
