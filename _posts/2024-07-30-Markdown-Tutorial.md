@@ -36,6 +36,8 @@ Use # symbols to create headers of different levels.
 ```
 ### Header 3  
 
+---
+
 #### Bold and Italic Text  
 Bold: Use double asterisks ** or double underscores __ for bold text.  
 
