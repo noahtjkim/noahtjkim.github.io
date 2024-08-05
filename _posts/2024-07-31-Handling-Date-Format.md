@@ -15,7 +15,7 @@ Apr 05 2024 00:15:30 (MMM dd yyyy HH:mm:ss)
 01/25/2024 5:30 a.m. EST (MM/dd/yyyy h:mm a z)  
 
 
-(Note that `H` for 24 hour, non-padded, `HH` for 24 hour, padded, `h` for 12 hour, non-padded, `hh` for 12 hour, padded)  
+(Note that *H* for 24 hour, non-padded, *HH* for 24 hour, padded, *h* for 12 hour, non-padded, *hh* for 12 hour, padded)  
 H: 5 or 23  
 HH: 05 or 23  
 h: 7 or 11 used with am, pm  
