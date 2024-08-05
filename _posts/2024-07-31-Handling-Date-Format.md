@@ -12,6 +12,7 @@ When working with datasets from multiple sources, it's common to encounter varyi
 04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm a)  
 02/05/24 (MM/dd/yy)  
 Apr 05 2024 00:15:30 (MMM dd yyyy HH:mm:ss)  
+01/25/2024 5:30 a.m. EST (MM/dd/yyyy h:mm a z)  
 
 Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
 
@@ -57,6 +58,12 @@ WHERE date RLIKE '\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2} [APap]\\.[Mm]\\.';
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MMM dd yyyy HH:mm:ss')
 WHERE date RLIKE '^[A-Za-z]{3}\\s\\d{2}\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}$'
+```
+```
+-- Example for MM/dd/yyyy h:mm a z
+UPDATE dataset_table
+SET new_date = TO_TIMESTAMP(date, 'MM/dd/yyyy h:mm a z')
+WHERE date RLIKE '\\d{2}/\\d{2}/\\d{4}\\s\\d{1}:\\d{2}\\s[APap]\\.[Mm]\\.\\sEST$'
 ```
 Repeat the above UPDATE statement for each identified date format.  
 Note that RLIKE stands for "regular expression like", allowing you to match patterns using regular expressions.  
