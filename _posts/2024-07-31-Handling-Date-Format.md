@@ -5,14 +5,12 @@ title: Handling date formats in big data
 
 When working with datasets from multiple sources, it's common to encounter varying date formats. Each source may provide dates in different formats, leading to challenges in data consistency and processing. Here are some examples of different date formats you might encounter:
 
-02/25/2024 (MM/dd/yyyy)
-03/04/2024 15:23:10 (dd/MM/yyyy HH:mm
-)
-22-5-2023 (dd-M-yyyy)
-4-21-2024 (M-dd-yyyy)
-04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm
-a)
-02/05/24 (MM/dd/yy)
+02/25/2024 (MM/dd/yyyy)  
+03/04/2024 15:23:10 (dd/MM/yyyy HH:mm)  
+22-5-2023 (dd-M-yyyy)  
+4-21-2024 (M-dd-yyyy)  
+04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm a)  
+02/05/24 (MM/dd/yy)  
 Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
 
 There are several ways to handle this situation, and I’d like to introduce one effective method:
