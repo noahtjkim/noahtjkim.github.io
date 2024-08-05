@@ -14,6 +14,8 @@ Use three dashes to create a horizontal line, like the one above.
 ---
 ```
 
+---
+
 #### Line Breaks  
 To create a new line in plain text, add more than two whitespaces at the end of the line.  
 I put two whitespaces here  
