@@ -3,63 +3,57 @@ layout: post
 title: Handling date formats in big data
 ---
 
-When you are given datasets from multiple sources.   
-If it has "date" field, then there might be a chance that the date format is all different because the sources provide it in different format.  
+When working with datasets from multiple sources, it's common to encounter varying date formats. Each source may provide dates in different formats, leading to challenges in data consistency and processing. Here are some examples of different date formats you might encounter:
 
-I have seen many different date formats like  
-02/25/2024 (MM/dd/yyyy)  
-03/04/2024 15:23:10 (dd/MM/yyyy HH:mm:ss)  
-22-5-2023 (dd-m-yyyy)  
-4-21-2024 (M-dd-yyyy)  
-04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm:ss a)  
+02/25/2024 (MM/dd/yyyy)
+03/04/2024 15:23:10 (dd/MM/yyyy HH:mm
+)
+22-5-2023 (dd-M-yyyy)
+4-21-2024 (M-dd-yyyy)
+04-21-2024 09:40:11 p.m. (MM-dd-yyyy hh:mm
+a)
 02/05/24 (MM/dd/yy)
-...
+Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
 
-What if you have datasets which come from multiple data providers or sources in your S3 and what if their date formats are all different?  
-Your mission is to import the datasets to your data warehouse and the date fields should come as timestamp type.  
-It will not be easy as long as there are multiple different date formats.  
+There are several ways to handle this situation, and I’d like to introduce one effective method:
 
-There should be many ways to handle this case.  
-I'd like to introduce one of the ways.  
+1. Import Date Fields as Strings
+First, import the date fields as string types. This will allow all date formats to be captured in their original form.
 
-1. Import the date field as a string type.  
-   Then this field will have all date formats.
+2. Identify Date Formats
+Next, determine the various date formats present in your dataset. You can achieve this by running a query that uses regular expressions to match different date patterns:
+```
+SELECT
+   CASE
+      WHEN date RLIKE '\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}:\\d{2}' THEN 'MM/dd/yyyy HH:mm:ss'
+      WHEN date RLIKE '\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}' THEN 'MM-dd-yyyy HH:mm:ss'
+      WHEN date RLIKE '\\d{1,2}-\\d{2}-\\d{4}' THEN 'M-dd-yyyy'
+      -- Add more formats as needed
+      ELSE 'Unknown format'
+   END AS date_format
+FROM dataset_table;
+```
 
-2. You have to know what date formats are there.
-   To know all the date formats in your datasets, you could try this way.
-   ```  
-   select
-      case
-         when date rlike '\\d{2}\\/\\d{2}\\/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}' then 'MM/dd/yyyy HH:mm:ss'
-         when date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}' then 'MM-dd-yyyy HH:mm:ss'
-         when date rlike '\\d{1,2}-\\d{2}-\\d{4}' then 'M-dd-yyyy'
-         -- other formats here ...
-         else 'Unknown formats'
-      end
-   from dataset_table
-   ```
+3. Update the Table with Standardized Timestamps
+Once you have identified all the date formats, you can update your table to convert these string dates into a standardized timestamp format. Here’s how:  
 
-3. Once you get all the date formats, then you can take this way to update your table.  
-   - Add a new column and use update statement
-     With this way, it will be like  
-     ```
-     alter table dataset_table
-     add column new_date timestamp
-     ```
-     ```
-     -- 05/21/2024 18:30:15
-     update dataset_table
-     set new_date = to_timestamp(date, 'MM/dd/yyyy HH:mm:ss')
-     where date rlike '\\d{2}\\/\\d{2}\\/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}'
-     ```
-     ```
-     -- 04-15-2024 09:21:11 P.M.
-     update dataset_table
-     set new_date = to_timestamp(date, 'MM-dd-yyyy hh:mm:ss a')
-     where date rlike '\\d{2}-\\d{2}-\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s[APap]\\.[Mm]\\.'
-     ```
-     and repeat this for other date foramts  
-     (rlike is "regular expression like" so you can use regular expression to catch the date format patterns)  
-     (Usually sql recognise \ as a special character, so to prevent that, use \\ for "\")
+ALTER TABLE dataset_table
+ADD COLUMN new_date TIMESTAMP;  
 
+```
+-- Example for MM/dd/yyyy HH:mm:ss
+UPDATE dataset_table
+SET new_date = TO_TIMESTAMP(date, 'MM/dd/yyyy HH:mm:ss')
+WHERE date RLIKE '\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}:\\d{2}';  
+```
+```
+-- Example for MM-dd-yyyy hh:mm:ss a
+UPDATE dataset_table
+SET new_date = TO_TIMESTAMP(date, 'MM-dd-yyyy hh:mm:ss a')
+WHERE date RLIKE '\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2} [APap]\\.[Mm]\\.';  
+```
+Repeat the above UPDATE statement for each identified date format. Note that RLIKE stands for "regular expression like", allowing you to match patterns using regular expressions. Since SQL often treats \ as a special character, use \\ to represent a literal backslash.  
+
+##### Conclusion
+Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardized timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
 
