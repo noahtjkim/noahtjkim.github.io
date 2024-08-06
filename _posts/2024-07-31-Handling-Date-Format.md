@@ -92,5 +92,5 @@ RENAME COLUMN new_date TO date;
 ```
 
 #### Conclusion
-Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardized timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
+Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardised timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
 
