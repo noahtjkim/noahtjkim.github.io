@@ -60,7 +60,8 @@ ADD COLUMN new_date TIMESTAMP;
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MM/dd/yyyy HH:mm:ss')
 WHERE date RLIKE '\\d{2}/\\d{2}/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}';  
-
+```
+```
 -- Example for MM-dd-yyyy hh:mm:ss a
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MM-dd-yyyy hh:mm:ss a')
