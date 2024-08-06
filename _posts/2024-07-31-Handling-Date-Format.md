@@ -60,8 +60,7 @@ ADD COLUMN new_date TIMESTAMP;
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MM/dd/yyyy HH:mm:ss')
 WHERE date RLIKE '\\d{2}/\\d{2}/\\d{4}\\s\\d{2}:\\d{2}:\\d{2}';  
-```
-```
+
 -- Example for MM-dd-yyyy hh:mm:ss a
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MM-dd-yyyy hh:mm:ss a')
@@ -76,7 +75,8 @@ WHERE date RLIKE '^[A-Za-z]{3}\\s\\d{2}\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}$'
 UPDATE dataset_table
 SET new_date = TO_TIMESTAMP(date, 'MM/dd/yyyy h:mm a z')
 WHERE date RLIKE '\\d{2}/\\d{2}/\\d{4}\\s\\d{1}:\\d{2}\\s[APap]\\.[Mm]\\.\\sEST$'  
-```
+```  
+
 Repeat the above UPDATE statement for each identified date format.  
 Note that RLIKE stands for "regular expression like", allowing you to match patterns using regular expressions.  
 Since SQL often treats `\` as a special character, use `\\` to represent a literal backslash.  
