@@ -81,7 +81,7 @@ Repeat the above UPDATE statement for each identified date format.
 Note that RLIKE stands for "regular expression like", allowing you to match patterns using regular expressions.  
 Since SQL often treats `\` as a special character, use `\\` to represent a literal backslash.  
 
-##### Final Step: Clean Up  
+#### Final Step: Clean Up  
 After updating the date fields and ensuring all dates are standardised:
 ```
 ALTER TABLE dataset_table
@@ -91,6 +91,6 @@ ALTER TABLE dataset_table
 RENAME COLUMN new_date TO date;
 ```
 
-##### Conclusion
+#### Conclusion
 Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardized timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
 
