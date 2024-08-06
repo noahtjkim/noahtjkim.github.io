@@ -27,7 +27,7 @@ Apr 05 2024 00:15:30 (MMM dd yyyy HH:mm:ss)
 **MMM**: Jan (January), Nov (November)  
 **MMMM**: November (November)  
 
-Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardized to the timestamp type. This can be challenging due to the diversity in date formats.
+Imagine you have datasets from various data providers stored in your S3 bucket, each using different date formats. Your goal is to import these datasets into your data warehouse with date fields standardised to the timestamp type. This can be challenging due to the diversity in date formats.
 
 There are several ways to handle this situation, and I’d like to introduce one effective method:
 
@@ -48,8 +48,8 @@ SELECT
 FROM dataset_table;
 ```
 
-3. Update the Table with Standardized Timestamps
-Once you have identified all the date formats, you can update your table to convert these string dates into a standardized timestamp format. Here’s how:  
+3. Update the Table with standardised Timestamps
+Once you have identified all the date formats, you can update your table to convert these string dates into a standardised timestamp format. Here’s how:  
 ```
 ALTER TABLE dataset_table
 ADD COLUMN new_date TIMESTAMP;  
@@ -92,5 +92,5 @@ RENAME COLUMN new_date TO date;
 ```
 
 #### Conclusion
-Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardised timestamps, you can effectively manage and standardize your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
+Handling multiple date formats in datasets can be complex, but by importing date fields as strings, identifying the formats using regular expressions, and then updating the table with standardised timestamps, you can effectively manage and standardise your date fields. This approach ensures that your data warehouse maintains consistency and accuracy across different data sources.
 
