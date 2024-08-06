@@ -54,6 +54,7 @@ Once you have identified all the date formats, you can update your table to conv
 ALTER TABLE dataset_table
 ADD COLUMN new_date TIMESTAMP;  
 ```
+
 ```
 -- Example for MM/dd/yyyy HH:mm:ss
 UPDATE dataset_table
