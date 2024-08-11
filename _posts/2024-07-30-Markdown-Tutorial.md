@@ -58,8 +58,9 @@ Markdown tutorial ...
 
 #### Tables
 
-|col1     |     col2   | col3  |
-|---------|------------|-------|
-| value1  |     value2 | value3|
-| val1    |     val2   | val3  |
+| Priority apples | Second priority | Third priority |
+|-------|--------|---------|
+| ambrosia | gala | red delicious |
+| pink lady | jazz | macintosh |
+| honeycrisp | granny smith | fuji |
 
