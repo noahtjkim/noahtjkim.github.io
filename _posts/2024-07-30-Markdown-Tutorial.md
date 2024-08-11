@@ -56,8 +56,6 @@ hello world, ...
 Paragraph 2,  
 Markdown tutorial ...  
 
-#### Tables
-
 
 | Priority apples | Second priority | Third priority |
 |-------|--------|---------|
