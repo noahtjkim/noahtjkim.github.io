@@ -57,6 +57,7 @@ Paragraph 2,
 Markdown tutorial ...  
 
 #### Tables
+
 |col1     |     col2   | col3  |
 |---------|------------|-------|
 | value1  |     value2 | value3|
