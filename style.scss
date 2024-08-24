@@ -277,6 +277,19 @@ nav {
   background-color: $lightGray;
 }
 
+.img-small {
+  width: 30px;
+  height: auto;
+}
+.img-medium {
+  width: 100px;
+  height: auto;
+}
+.img-large {
+  width: 300px;
+  height: auto;
+}
+
 footer {
   padding: 20px 0;
   text-align: center;
