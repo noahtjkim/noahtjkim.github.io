@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div class="foods">
+  {% for post in site.posts %}
+    <article class="food">
+
+      <h1><a href="{{ site.baseurl }}{{ food.url }}">{{ food.title }}</a></h1>
+
+      <div class="entry">
+        {{ food.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ food.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
