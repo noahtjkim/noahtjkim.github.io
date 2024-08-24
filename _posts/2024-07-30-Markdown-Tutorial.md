@@ -57,4 +57,9 @@ hello world, ...
 Paragraph 2,  
 Markdown tutorial ...  
 
+#### Pictures
+To add a picture, 
+```
+![<picture_description>](<pictuer_path>)
+```
 
