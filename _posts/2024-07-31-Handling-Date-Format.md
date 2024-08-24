@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Handling date formats in big data
+categories: engineering
 ---
 
 When working with datasets from multiple sources, it's common to encounter varying date formats. Each source may provide dates in different formats, leading to challenges in data consistency and processing. Here are some examples of different date formats you might encounter:
