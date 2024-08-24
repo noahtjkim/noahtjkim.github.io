@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Food
-permalink: /foods/
+permalink: /food/
 ---
 
 # Hello world
