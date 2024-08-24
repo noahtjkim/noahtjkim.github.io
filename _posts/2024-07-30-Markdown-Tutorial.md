@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Markdown language tutorial
+categories: information
 ---
 
 This page briefly explains the Markdown language. It will cover topics such as making titles, writing plain text, adding code, creating tables, and more.  
