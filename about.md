@@ -9,7 +9,7 @@ Hi! I’m Noah. I’m a senior data engineer. I enjoy communicating with people 
 I'm particularly interested in engineering, food, finance, and investment.  
 I look forward to sharing insights and engaging in discussions on these subjects.  
 
-(Green card holder in the US)
+(The US green card holder)
 
 ### Contact me
 
