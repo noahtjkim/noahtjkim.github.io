@@ -7,10 +7,11 @@ categories: engineering
 ### Introduction
 In an ideal world, all incoming data files would have the same schema, be well-organised, and follow a consistent structure. However, in reality, data files vary in format due to:  
 
-Differences in schema (some files have different column names).  
-Inconsistent headers (some files have headers, others don’t).  
-Varying numbers of columns across files.  
-Different date formats used across files.  
+- Differences in schema (some files have different column names).  
+- Inconsistent headers (some files have headers, others don’t).  
+- Varying numbers of columns across files.  
+- Different date formats used across files.  
+
 These inconsistencies make it difficult to process data in a straightforward manner.  
 This document outlines a systematic approach to handling such challenges using Databricks and AWS S3 as part of a data warehousing pipeline.  
 
