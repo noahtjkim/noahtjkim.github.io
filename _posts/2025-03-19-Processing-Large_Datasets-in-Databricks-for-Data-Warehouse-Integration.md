@@ -71,7 +71,7 @@ Once we have collected column names, we need to normalize them to ensure consist
 - Detecting data types such as email, phone, IP address, and dates.  
 - Standardizing column names to a predefined format.  
 
-Step 2.1: Extracting Column Names and Preparing for Normalization
+Step 2.1: Extracting Column Names and Preparing for Normalization  
 ```python
 df = spark.sql(
     """
@@ -93,16 +93,15 @@ df = spark.sql(
 df.show(truncate=False)
 ```
 
-
-This extracts file names and column names into a structured list.
+This extracts file names and column names into a structured list.  
 
 ```python
 data = df.select("data").collect()
 list1 = [row["data"] for row in data]
 ```
 
-Step 2.2: Normalizing Column Names
-We apply rules to unify column names:
+Step 2.2: Normalizing Column Names  
+We apply rules to unify column names:  
 
 ```python
 import re
@@ -146,6 +145,59 @@ new_values = [[get_column_names(value) for value in row] for row in list1]
 print(new_values)
 ```
 
-This results in a standardized column name mapping.
+This results in a standardized column name mapping.  
 
+#### 3. Storing Processed Schema in S3
+To allow manual verification and future processing, we upload the processed schema to S3.  
 
+```python
+import csv
+from io import StringIO
+import boto3
+
+access_key = dbutils.secrets.get(scope="your_scope", key="your_aws_key_name")
+secret_key = dbutils.secrets.get(scope="your_scope", key="your_aws_secret_key_name")
+
+s3 = boto3.client("s3", aws_access_key_id=access_key, aws_secret_access_key=secret_key)
+
+def upload_list_to_s3(data_list, bucket_name, s3_file_path):
+    csv_buffer = StringIO()
+    csv_writer = csv.writer(csv_buffer, escapechar="\\", quoting=csv.QUOTE_MINIMAL)
+    csv_writer.writerows(data_list)
+    
+    s3.put_object(Bucket=bucket_name, Key=s3_file_path, Body=csv_buffer.getvalue())
+    print(f"File uploaded successfully to s3://{bucket_name}/{s3_file_path}")
+
+upload_list_to_s3(new_values, "your_bucket_name", "your_path/your_file_name.csv")
+```
+
+#### 4. Importing Data into Databricks Tables
+Once columns are normalized, we load the actual data.  
+
+```python
+df = spark.sql("SELECT * FROM stage_table")
+data_dict = {row["file_name"]: row["columns"] for row in df.collect()}
+
+files = dbutils.fs.ls("s3://path/to/your/data/")
+required_fields = ["col_w", "col_x", "col_y", "col_z"]
+
+for file in files:
+    schema = data_dict.get(file, [])
+    if not schema:
+        continue
+
+    df = spark.read.csv(f"s3://your_bucket/destination_folder/{file}", schema=schema)
+    df.write.mode("append").saveAsTable("main_table")
+
+df = spark.sql("SELECT * FROM main_table")
+df.show(truncate=False)
+```
+
+### Conclusion
+This approach ensures scalability, consistency, and efficiency.  
+
+- Scalability – Parallelized schema extraction speeds up processing.
+- Consistency – Standardized column names create a structured dataset.
+- Efficiency – Data is directly stored in Databricks for easy querying.
+
+This workflow provides a robust foundation for importing heterogeneous datasets into a data warehouse.
