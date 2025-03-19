@@ -58,5 +58,5 @@ column_df = spark.createDataFrame(file_columns_array, ["column_name", "path"])
 
 # Save as a table for reference
 column_df.write.mode("overwrite").saveAsTable("table_path.file_column_table")
-Now, file_column_table contains the file path and the schema (column names) for each file.
 ```
+Now, file_column_table contains the file path and the schema (column names) for each file.
