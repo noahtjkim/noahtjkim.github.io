@@ -4,22 +4,24 @@ title: Processing Large Datasets in Databricks for Data Warehouse Integration
 categories: engineering
 ---
 
-## Introduction
-In an ideal world, all incoming data files would have the same schema, be well-organized, and follow a consistent structure. However, in reality, data files vary in format due to:  
+#### Introduction
+In an ideal world, all incoming data files would have the same schema, be well-organised, and follow a consistent structure. However, in reality, data files vary in format due to:  
 
 Differences in schema (some files have different column names).  
 Inconsistent headers (some files have headers, others don’t).  
 Varying numbers of columns across files.  
 Different date formats used across files.  
-These inconsistencies make it difficult to process data in a straightforward manner. This document outlines a systematic approach to handling such challenges using Databricks and AWS S3 as part of a data warehousing pipeline.  
+These inconsistencies make it difficult to process data in a straightforward manner.  
+This document outlines a systematic approach to handling such challenges using Databricks and AWS S3 as part of a data warehousing pipeline.  
 
 1. Data Storage and File Tracking
-Before processing the files, we first store them in AWS S3. To track the files, we create a metadata table in Databricks, containing basic file information such as:
+Before processing the files, we first store them in AWS S3.
+To track the files, we create a metadata table in Databricks, containing basic file information such as:
+File name  
+Schema (list of columns for each file)  
 
-File name
-Schema (list of columns for each file)
-Step 1.1: Listing Files in S3
-We use Databricks utilities to retrieve a list of files from the S3 bucket:
+Step 1.1: Listing Files in S3  
+We use Databricks utilities to retrieve a list of files from the S3 bucket:  
 
 ```python
 files = dbutils.fs.ls("s3://your_data/path/")  # List all files in the S3 path
@@ -28,8 +30,8 @@ print(file_paths)
 print(len(file_paths))
 ```
 
-Step 1.2: Extracting Column Names for Each File
-We use parallel processing (via ThreadPoolExecutor) to read each file, infer its schema, and store the column names.
+Step 1.2: Extracting Column Names for Each File  
+We use parallel processing (via ThreadPoolExecutor) to read each file, infer its schema, and store the column names.  
 
 ``` python
 from concurrent.futures import ThreadPoolExecutor
