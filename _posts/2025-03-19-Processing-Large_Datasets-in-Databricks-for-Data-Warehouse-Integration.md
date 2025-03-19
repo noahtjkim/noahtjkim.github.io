@@ -4,7 +4,7 @@ title: Processing Large Datasets in Databricks for Data Warehouse Integration
 categories: engineering
 ---
 
-#### Introduction
+### Introduction
 In an ideal world, all incoming data files would have the same schema, be well-organised, and follow a consistent structure. However, in reality, data files vary in format due to:  
 
 Differences in schema (some files have different column names).  
@@ -14,7 +14,7 @@ Different date formats used across files.
 These inconsistencies make it difficult to process data in a straightforward manner.  
 This document outlines a systematic approach to handling such challenges using Databricks and AWS S3 as part of a data warehousing pipeline.  
 
-1. Data Storage and File Tracking
+#### 1. Data Storage and File Tracking
 Before processing the files, we first store them in AWS S3.
 To track the files, we create a metadata table in Databricks, containing basic file information such as:
 File name  
