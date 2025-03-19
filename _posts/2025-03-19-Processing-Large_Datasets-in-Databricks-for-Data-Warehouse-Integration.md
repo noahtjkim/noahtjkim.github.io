@@ -72,7 +72,7 @@ Once we have collected column names, we need to normalize them to ensure consist
 - Standardizing column names to a predefined format.  
 
 Step 2.1: Extracting Column Names and Preparing for Normalization
-₩₩₩ python
+```python
 df = spark.sql(
     """
     with get_data as (
@@ -91,22 +91,20 @@ df = spark.sql(
     """
 )
 df.show(truncate=False)
-₩₩₩
+```
 
 
 This extracts file names and column names into a structured list.
 
-python
-Copy
-Edit
+```python
 data = df.select("data").collect()
 list1 = [row["data"] for row in data]
+```
+
 Step 2.2: Normalizing Column Names
 We apply rules to unify column names:
 
-python
-Copy
-Edit
+```python
 import re
 from datetime import datetime
 
@@ -140,12 +138,14 @@ def get_column_names(value):
         return "ip_address"
 
     return "unknown"
+```
+
 Step 2.3: Applying Normalization
-python
-Copy
-Edit
+```python
 new_values = [[get_column_names(value) for value in row] for row in list1]
 print(new_values)
+```
+
 This results in a standardized column name mapping.
 
 
