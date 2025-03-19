@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Handling and Processing Large Datasets in Databricks for Data Warehouse Integration
+title: Processing Large Datasets in Databricks for Data Warehouse Integration
 categories: engineering
 ---
 
