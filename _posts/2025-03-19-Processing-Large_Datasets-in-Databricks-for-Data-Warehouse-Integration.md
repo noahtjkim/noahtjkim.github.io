@@ -171,6 +171,30 @@ def upload_list_to_s3(data_list, bucket_name, s3_file_path):
 upload_list_to_s3(new_values, "your_bucket_name", "your_path/your_file_name.csv")
 ```
 
+Create a stage table
+```python
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
+
+s3_path = "s3://your_bucket/your_file_name.csv"
+
+schema = StructType([
+    StructField("check", IntegerType(), True),
+    StructField("file_name", StringType(), True),
+    StructField("columns", StringType(), True)
+])
+
+df = spark.read.format("csv").option("inferSchema", "true").schema(schema).load(s3_path)
+
+df = df.withColumn("columns", split(col("columns"), ","))
+
+df.show()
+df.printSchema()
+
+spark.sql("drop table if exists stage_table")
+df.write.mode("overwrite").saveAsTable("stage_table")
+```
+
 #### 4. Importing Data into Databricks Tables
 Once columns are normalised, we load the actual data.  
 
