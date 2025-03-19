@@ -53,7 +53,7 @@ def get_file_columns(file_path):
         return ([], file_path)
 
 # Run in parallel to maximize efficiency
-with ThreadPoolExecutor(max_workers=8) as executor:
+with ThreadPoolExecutor(max_workers = 8) as executor:
     file_columns_array = list(executor.map(get_file_columns, file_paths))
 
 # Convert results into a Spark DataFrame
