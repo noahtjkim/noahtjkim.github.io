@@ -52,7 +52,7 @@ def get_file_columns(file_path):
         print(f"Failed to read {file_path}: {e}")
         return ([], file_path)
 
-# Run in parallel to maximize efficiency
+# Run in parallel to maximise efficiency
 with ThreadPoolExecutor(max_workers = 8) as executor:
     file_columns_array = list(executor.map(get_file_columns, file_paths))
 
@@ -65,7 +65,7 @@ column_df.write.mode("overwrite").saveAsTable("table_path.file_column_table")
 Now, file_column_table contains the file path and the schema (column names) for each file.
 
 #### 2. Standardizing and Normalizing Column Names
-Once we have collected column names, we need to normalize them to ensure consistency across all files. This step includes:  
+Once we have collected column names, we need to normalise them to ensure consistency across all files. This step includes:  
 
 - Unifying variations of column names (e.g., "Fname", "First Name", "firstname" → "first_name").  
 - Detecting data types such as email, phone, IP address, and dates.  
@@ -110,7 +110,7 @@ from datetime import datetime
 def get_column_names(value):
     value = value.strip()
 
-    # Standardize common column name variations
+    # Standardise common column name variations
     if value in ("Email", "EMail", "email", "EmailAddress"): return "email"
     elif value in ("Fname", "F Name", "firstname", "FirstName"): return "first_name"
     elif value in ("Lname", "L name", "lastname", "LastName"): return "last_name"
@@ -145,7 +145,7 @@ new_values = [[get_column_names(value) for value in row] for row in list1]
 print(new_values)
 ```
 
-This results in a standardized column name mapping.  
+This results in a standardised column name mapping.  
 
 #### 3. Storing Processed Schema in S3
 To allow manual verification and future processing, we upload the processed schema to S3.  
@@ -172,7 +172,7 @@ upload_list_to_s3(new_values, "your_bucket_name", "your_path/your_file_name.csv"
 ```
 
 #### 4. Importing Data into Databricks Tables
-Once columns are normalized, we load the actual data.  
+Once columns are normalised, we load the actual data.  
 
 ```python
 df = spark.sql("SELECT * FROM stage_table")
@@ -196,8 +196,8 @@ df.show(truncate=False)
 ### Conclusion
 This approach ensures scalability, consistency, and efficiency.  
 
-- Scalability – Parallelized schema extraction speeds up processing.
-- Consistency – Standardized column names create a structured dataset.
+- Scalability – Parallelised schema extraction speeds up processing.
+- Consistency – Standardised column names create a structured dataset.
 - Efficiency – Data is directly stored in Databricks for easy querying.
 
 This workflow provides a robust foundation for importing heterogeneous datasets into a data warehouse.
