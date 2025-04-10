@@ -4,6 +4,15 @@ title: Efficiently Mapping IP Addresses to Geolocation
 categories: engineering
 ---
 
+**TL;DR**  
+How to efficiently map IP addresses to geolocation data without a paid API.  
+- Avoid expanding CIDR blocks into individual IPs - it's memory intensive and inefficient.
+- Convert IPs to integers (for IPv4) and compare them against CIDR start and end ranges.
+- Use libraries like ipaddresses (in Python) to convert CIDR to start/end and IP to integer.
+- IPv6 integers are too large for Bigint, so store them as strings and use string comparison.
+- Plist IPv4 and IPv6 into separate tables to maintain performance, especially if IPv4 traffic dominates.
+  This method helped me build a scalable, cost-efficient, and fast IP geolocation lookup without relying on paid APIs.
+
 When dealing with marketing data, one common challenge is working with IP addresses—especially  
 if you want to enrich them with geolocation information.  
 My dataset had a mix of IPv4 and IPv6 addresses but lacked any associated geolocation data  
@@ -40,3 +49,22 @@ WHERE ip_integer BETWEEN start_ip AND end_ip
 ```
 This worked beautifully for IPv4 addresses.  
 
+Then what about IPv6? IPv6 addresses present a new challenge.  
+Their numerical values can be massive—way beyond the limits of traditional data types.  
+Take 2001:200::/32 for example: When converted to an integer, it becomes 42540766411282592856903984951653826560  
+This number far exceeds the maximum for BIGINT in most SQL engines (including Databricks),  
+which is 9,223,372,036,854,775,807  
+So you can’t store IPv6 as integers using standard numeric types.  
+Instead, I stored the start and end boundaries of IPv6 addresses as strings.  
+This allowed me to perform comparisons using string-based logic in SQL.  
+
+For performance optimisation, separate tables for IPv4 and IPv6.  
+When I first tried storing both IPv4 and IPv6 in a single table (with boundaries stored as strings),  
+performance took a nosedive—even for IPv4 queries.  
+
+That’s because comparing numeric IPs (IPv4) as strings is much slower than comparing integers.  
+
+So I split the data into two separate tables.  
+- IPv4 Table: IPs converted to integers (bigint) for fast, efficient range comparisons.
+- IPv6 Table: IPs stored and compared as strings, still slower, bu necessary due to data type limits.
+Since the vast majority of my traffic is IPv4, this setup gave me a good balance between performance and flexibility.
