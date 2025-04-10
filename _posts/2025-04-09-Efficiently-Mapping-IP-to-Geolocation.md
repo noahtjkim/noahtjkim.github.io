@@ -44,11 +44,9 @@ So I had to convert IP addresses to integers for accurate and efficient comparis
 e.g. 192.168.0.0 -> 3232235521, 192.168.0.10 -> 3232235530, 192.168.0.255 -> 3232235775  
 
 Once converted, checking whether an IP (e.g. 192.168.0.10) falls within a range becomes a simple SQL condition.  
-<pre>
-  <code class = "sql">
-    WHERE ip_integer BETWEEN start_ip AND end_ip    
-  </code>
-</pre>
+``` sql
+WHERE ip_integer BETWEEN start_ip AND end_ip    
+```
 This worked beautifully for IPv4 addresses.  
 
 Then what about IPv6? IPv6 addresses present a new challenge.  
