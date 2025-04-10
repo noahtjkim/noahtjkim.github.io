@@ -37,7 +37,7 @@ First, import the date fields as string types. This will allow all date formats 
 
 2. Identify Date Formats
 Next, determine the various date formats present in your dataset. You can achieve this by running a query that uses regular expressions to match different date patterns:
-```
+```sql
 SELECT
    CASE
       WHEN date RLIKE '\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}:\\d{2}' THEN 'MM/dd/yyyy HH:mm:ss'
@@ -52,7 +52,7 @@ FROM dataset_table;
 3. Update the Table with standardised Timestamps
 Once you have identified all the date formats, you can update your table to convert these string dates into a standardised timestamp format. Here’s how:  
 
-```
+```sql
 ALTER TABLE dataset_table
 ADD COLUMN new_date TIMESTAMP;  
 
@@ -83,7 +83,7 @@ Since SQL often treats `\` as a special character, use `\\` to represent a liter
 
 #### Final Step: Clean Up  
 After updating the date fields and ensuring all dates are standardised:
-```
+```sql
 ALTER TABLE dataset_table
 DROP COLUMN date;
 
