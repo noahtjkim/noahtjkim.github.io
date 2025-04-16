@@ -4,12 +4,8 @@ title: Optimising Range Joins from 140 Trillion Comparisons to Practical Perform
 categories: engineering
 ---
 
-**TL;DR**
-Range joins like 
-```sql
-ip between start_ip and end_ip
-```
-are brutally slow on large datasets because they result in O(n x m) comparisons.  
+**TL;DR**  
+Range joins like `ip between start_ip and end_ip` are brutally slow on large datasets because they result in O(n x m) comparisons.  
 To solve this, I implemented a bucket-wise join strategy.  
 1) Convert each ip into a bucket_id.  
 2) Map start_ip - end_ip ranges into overlappting bucket_ids.
