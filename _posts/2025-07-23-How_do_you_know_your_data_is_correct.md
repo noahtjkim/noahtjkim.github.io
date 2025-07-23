@@ -4,13 +4,20 @@ title: How do you know your data is correct?
 categories: engineering
 ---
 
+**TL;DR**
+I built a separate validation pipeline that hits the same API as my main ingestion pipeline, but instead of inserting data, it only computes metrics like `count(transaction_id)`, `sum(payout)`, and `sum(revenue)` per hour (based on event datetime). It compares these to what's in the data warehouse and stores the *deltas* in a validation table.
+
+If the deltas are all zero — great. If not, I know exactly when and where things went wrong.  
+This approach helps catch silent bugs, data loss, or logic errors — and gives me real confidence that my data is correct.
+
+
+## Introduction
 We often trust our pipelines a bit too much.  
 
 You build a solid ingestion system — it fetches data from an API, processes it, and loads it into your data warehouse. You wrap it in try-catch blocks, maybe add retries. Everything "works." But the truth is, **just because it ran doesn’t mean it did the right thing**.  
 
 This post is about how I built a separate validation pipeline to check my main ingestion process — and why it was worth it.
 
----
 
 ## The Problem
 
@@ -27,7 +34,6 @@ This sounds simple, but…
 
 It’s easy to miss these — especially when nothing crashes.
 
----
 
 ## The Solution: A Second Pipeline for Validation
 
@@ -46,7 +52,6 @@ Both pipelines hit the same API endpoint, but the validation pipeline doesn’t 
 If the delta = 0 → great  
 If there’s a mismatch → something’s off
 
----
 
 ## Why This Works
 
@@ -63,7 +68,6 @@ I can quickly answer questions like:
 - Why does today’s revenue look low?
 - Was there a schema bug at midnight?
 
----
 
 ## What It Doesn’t Catch (And How to Go Further)
 
@@ -74,21 +78,18 @@ Even if counts match, field types or names might change silently.
 
 **Fix:** Log and diff field lists + data types across runs
 
----
 
 ### Outlier Detection  
 What if the API sent bad values, but the row count is right?
 
 **Fix:** Add Z-score anomaly checks on revenue, payout, etc.
 
----
 
 ### Simple Dashboard  
 Raw deltas are powerful — but a quick UI helps debug faster.
 
 **Fix:** A simple dashboard showing 1-hour blocks and validation status
 
----
 
 ## Final Thoughts
 
