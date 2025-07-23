@@ -4,7 +4,7 @@ title: How do you know your data is correct?
 categories: engineering
 ---
 
-**TL;DR**
+**TL;DR**  
 I built a separate validation pipeline that hits the same API as my main ingestion pipeline, but instead of inserting data, it only computes metrics like `count(transaction_id)`, `sum(payout)`, and `sum(revenue)` per hour (based on event datetime). It compares these to what's in the data warehouse and stores the *deltas* in a validation table.
 
 If the deltas are all zero — great. If not, I know exactly when and where things went wrong.  
