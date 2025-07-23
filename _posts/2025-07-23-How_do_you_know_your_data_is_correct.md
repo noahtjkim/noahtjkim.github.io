@@ -4,8 +4,6 @@ title: How do you know your data is correct?
 categories: engineering
 ---
 
-## How Do You Know Your Data Is Correct?
-
 We often trust our pipelines a bit too much.  
 
 You build a solid ingestion system — it fetches data from an API, processes it, and loads it into your data warehouse. You wrap it in try-catch blocks, maybe add retries. Everything "works." But the truth is, **just because it ran doesn’t mean it did the right thing**.  
